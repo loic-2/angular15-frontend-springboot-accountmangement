@@ -1,0 +1,55 @@
+<h2 mat-dialog-title style="text-align: center;border-bottom: 1px solid gray;">{{title}}</h2>
+<mat-dialog-content>
+    <div class="example-container" style="text-align: center;">
+        <div class="column">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <mat-icon matSuffix>person</mat-icon>
+                <input matInput placeholder="Dogmo" [formControl]="nom" required>
+                <mat-error *ngIf="nom.invalid">{{getErrorMessageForNom()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Prenom</mat-label>
+                <mat-icon matSuffix>person</mat-icon>
+                <input matInput placeholder="Alain" [formControl]="prenom" required>
+                <mat-error *ngIf="prenom.invalid">{{getErrorMessagePrenom()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Numero de CNI</mat-label>
+                <mat-icon matSuffix>badge</mat-icon>
+                <input matInput placeholder="201934454" [formControl]="cin" required>
+                <mat-error *ngIf="cin.invalid">{{getErrorMessageForCin()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="column">
+            <mat-form-field appearance="outline">
+                <mat-label>Agence</mat-label>
+                <mat-icon matSuffix>store</mat-icon>
+                <input matInput placeholder="Biyemassi" [formControl]="agence" required>
+                <mat-error *ngIf="agence.invalid">{{getErrorMessageForAgence()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Numero de compte</mat-label>
+                <mat-icon matSuffix>credit_card</mat-icon>
+                <input matInput placeholder="23445777888" [formControl]="numero_compte" required>
+                <mat-error *ngIf="numero_compte.invalid">{{getErrorMessageForCompte()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Solde</mat-label>
+                <mat-icon matSuffix>attach_money</mat-icon>
+                <input matInput placeholder="35000" [formControl]="solde" required>
+                <mat-error *ngIf="solde.invalid">{{getErrorMessageForSolde()}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="center" style="border-top: 1px solid gray;">
+    <button mat-button mat-dialog-close style="background-color: red; color: white;">Annuler</button>
+    <button mat-button (click)="save()" style="background-color: blue; color: white;" cdkFocusInitial>{{buttonText}}</button>
+</mat-dialog-actions>

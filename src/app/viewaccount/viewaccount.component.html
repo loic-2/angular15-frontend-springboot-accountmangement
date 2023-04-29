@@ -1,0 +1,60 @@
+<h2 mat-dialog-title style="text-align: center;border-bottom: 1px solid gray;">Informations du Compte</h2>
+<mat-dialog-content>
+    <div class="example-container" style="text-align: center;">
+        <div class="column" style="text-align: left;margin-right: 80px;">
+            <div>
+                <label for="nom">Nom</label><br>
+                <p>
+                    <mat-icon style="vertical-align: middle;">person</mat-icon>
+                    &nbsp;&nbsp;{{account.nom}}
+                </p>
+            </div>
+
+            <div>
+                <label for="prenom">Prenom</label><br>
+                <p>
+                    <mat-icon style="vertical-align: middle;">person</mat-icon>
+                    &nbsp;&nbsp;{{account.prenom}}
+                </p>
+            </div>
+
+            <div>
+                <label for="cni">Numero CIN</label><br>
+                <p>
+                    <mat-icon style="vertical-align: middle;">badge</mat-icon>
+                    &nbsp;&nbsp;{{account.cni}}
+                </p>
+            </div>
+        </div>
+
+        <div class="column" style="text-align: left;margin-left: 80px;">
+            <div>
+                <label for="agence">Agence</label><br>
+                <p>
+                    <mat-icon style="vertical-align: middle;">store</mat-icon>
+                    &nbsp;&nbsp;{{account.agence}}
+                </p>
+            </div>
+
+            <div>
+                <label for="numero">Numero de compte</label><br>
+                <p>
+                    <mat-icon class="inline-icon" style="vertical-align: middle;">credit_card</mat-icon>
+                    &nbsp;&nbsp;{{account.numero}}
+                </p>
+            </div>
+
+            <div>
+                <label for="solde">Solde</label><br>
+                <p>
+                    <mat-icon class="inline-icon" style="vertical-align: middle;">attach_money</mat-icon>
+                    &nbsp;&nbsp;{{account.solde}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="center" style="border-top: 1px solid gray;">
+    <button mat-button [mat-dialog-close]="true" style="background-color: blue; color: white;" cdkFocusInitial>Fermer</button>
+</mat-dialog-actions>
