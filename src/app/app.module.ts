@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewaccountComponent } from './viewaccount/viewaccount.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ViewaccountComponent } from './viewaccount/viewaccount.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

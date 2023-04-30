@@ -3,11 +3,14 @@
         <button color="primary" mat-raised-button (click)="addData()" class="demo-button">
             Ajouter
         </button>
-        <button color="warn" mat-raised-button [disabled]="!dataSource.length" (click)="removeData()" class="demo-button">
+        <button color="warn" mat-raised-button [disabled]="!dataSource.data.length" (click)="removeData()" class="demo-button">
             Supprimer
         </button>
     </div>
-
+    <mat-form-field>
+        <mat-label>Rechercher</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Emilie" #input>
+    </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
 
         <ng-container matColumnDef="checked">
@@ -73,7 +76,7 @@
                 <button mat-icon-button color="warn" (click)="deleteData(element)">
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-icon-button color="accent" (click)="viewData(element)">
+                <button mat-icon-button style="color: rgba(97, 97, 241, 0.7);" (click)="viewData(element)">
                     <mat-icon>visibility</mat-icon>
                 </button>
             </td>

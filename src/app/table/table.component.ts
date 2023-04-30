@@ -5,6 +5,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { AccountService } from '../services/account.service';
 import { Account } from '../models/account';
 import { ViewaccountComponent } from '../viewaccount/viewaccount.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTableDataSource} from '@angular/material/table';
 
 export interface PeriodicElement {
   id:number;
@@ -32,9 +34,10 @@ export class TableComponent {
   }
   
 
-  constructor(public dialog: MatDialog,private accountService: AccountService) {}
+  constructor(public dialog: MatDialog,private accountService: AccountService,
+              private matSnackBar:MatSnackBar) {}
   displayedColumns: string[] = ['checked','position', 'nom', 'prenom', 'cni','numero','agence','solde','actions'];
-  dataSource = [...ELEMENT_DATA];
+  dataSource = new MatTableDataSource<PeriodicElement>([...ELEMENT_DATA]);
 
   @ViewChild(MatTable) table!: MatTable<PeriodicElement>;
 
@@ -71,6 +74,11 @@ export class TableComponent {
 
   deleteData(element :any) {
     this.accountService.deleteAccount(element.id).subscribe(result=>{
+      this.matSnackBar.open("Suppression Reussi","Fermer",{
+        panelClass:"custom-snackbar",
+        duration:3000,
+        horizontalPosition:"end",
+        verticalPosition:"top"})
       this.fetchData();
     })
   }
@@ -94,8 +102,13 @@ export class TableComponent {
         ELEMENT_DATA.push(element);
         this.compteur++
       });
-      this.dataSource=[...ELEMENT_DATA]
+      this.dataSource=new MatTableDataSource<PeriodicElement>([...ELEMENT_DATA])
       this.table.renderRows();
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

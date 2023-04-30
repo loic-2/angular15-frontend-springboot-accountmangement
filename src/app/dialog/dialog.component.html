@@ -50,6 +50,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="center" style="border-top: 1px solid gray;">
-    <button mat-button mat-dialog-close style="background-color: red; color: white;">Annuler</button>
-    <button mat-button (click)="save()" style="background-color: blue; color: white;" cdkFocusInitial>{{buttonText}}</button>
+    <button mat-button color="warn" mat-dialog-close style="color: white;">Annuler</button>
+    <button mat-button color="primary" (click)="save()" style="color: white;" cdkFocusInitial>{{buttonText}}</button>
 </mat-dialog-actions>

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { Account } from '../models/account';
 import { AccountService } from '../services/account.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog',
@@ -21,7 +22,8 @@ export class DialogComponent {
   agence= new FormControl<string>("",[Validators.required,Validators.maxLength(20)])
   solde= new FormControl<string>("",[Validators.required])
 
-  constructor(private accountService:AccountService){
+  constructor(private accountService:AccountService,
+              private matSnackBar:MatSnackBar){
 
   }
 
@@ -88,11 +90,19 @@ export class DialogComponent {
     console.log(newAccount)
     if (this.type==="creer") {
       this.accountService.createAccount(newAccount).subscribe(result=>{
-        console.log(result)
+        this.matSnackBar.open("Enregistrement reussi","Fermer",{
+          panelClass:"custom-snackbar",
+          duration:3000,
+          horizontalPosition:"end",
+          verticalPosition:"top"})
       })
     } else {
       this.accountService.updateAccount(newAccount).subscribe(result=>{
-        console.log(result)
+        this.matSnackBar.open("Modification Reussi","Fermer",{
+          panelClass:"custom-snackbar",
+          duration:3000,
+          horizontalPosition:"end",
+          verticalPosition:"top"})
       })
     }
   }
