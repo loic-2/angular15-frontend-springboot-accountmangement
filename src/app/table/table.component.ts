@@ -27,7 +27,6 @@ var ELEMENT_DATA: PeriodicElement[]=[]
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
-  compteur=0;
   accounts!:Account[];
   ngOnInit(): void {
     this.fetchData()
@@ -60,6 +59,7 @@ export class TableComponent {
     dialogRef.componentInstance.account=element
     dialogRef.componentInstance.title="Modifier le compte"
     dialogRef.componentInstance.buttonText="Modifier"
+    dialogRef.componentInstance.type="Modifier"
     dialogRef.afterClosed().subscribe(result=>{
       this.fetchData()
     })
@@ -84,6 +84,7 @@ export class TableComponent {
   }
 
   fetchData():void{
+    let compteur=0;
     this.accountService.getAllAccount().subscribe((result) => {
       this.accounts = result;
       ELEMENT_DATA.splice(0,ELEMENT_DATA.length)
@@ -91,7 +92,7 @@ export class TableComponent {
         const element: PeriodicElement = {
           id: account.id,
           nom: account.nom,
-          position: this.compteur + 1,
+          position: compteur + 1,
           prenom: account.prenom,
           cni: account.cni,
           numero: account.numero,
@@ -100,7 +101,7 @@ export class TableComponent {
         };
   
         ELEMENT_DATA.push(element);
-        this.compteur++
+        compteur++
       });
       this.dataSource=new MatTableDataSource<PeriodicElement>([...ELEMENT_DATA])
       this.table.renderRows();
